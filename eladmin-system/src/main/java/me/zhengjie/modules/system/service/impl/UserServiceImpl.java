@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Cacheable(key = "'id:' + #p0")
     @Transactional(rollbackFor = Exception.class)
-    public UserDto findById(String id) {
+    public UserDto findById(long id) {
         User user = userRepository.findById(id).orElseGet(User::new);
         ValidationUtil.isNull(user.getId(), "User", "id", id);
         return userMapper.toDto(user);
@@ -156,8 +156,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void delete(Set<String> ids) {
-        for (String id : ids) {
+    public void delete(Set<Long> ids) {
+        for (Long id : ids) {
             // 清理缓存
             UserDto user = findById(id);
             delCaches(user.getId(), user.getUsername());
@@ -241,7 +241,7 @@ public class UserServiceImpl implements UserService {
      *
      * @param id /
      */
-    public void delCaches(String id, String username) {
+    public void delCaches(Long id, String username) {
         redisUtils.del(CacheKey.USER_ID + id);
         flushCache(username);
     }

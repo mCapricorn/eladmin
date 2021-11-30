@@ -72,7 +72,7 @@ public interface QiNiuService {
      * @param id 文件ID
      * @return QiniuContent
      */
-    QiniuContent findByContentId(String id);
+    QiniuContent findByContentId(Long id);
 
     /**
      * 下载文件
@@ -100,7 +100,7 @@ public interface QiNiuService {
      * @param ids 文件ID数组
      * @param config 配置
      */
-    void deleteAll(String[] ids, QiniuConfig config);
+    void deleteAll(Long[] ids, QiniuConfig config);
 
     /**
      * 更新数据

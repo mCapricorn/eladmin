@@ -43,7 +43,7 @@ public interface DeptService {
      * @param id /
      * @return /
      */
-    DeptDto findById(String id);
+    DeptDto findById(Long id);
 
     /**
      * 创建
@@ -69,14 +69,14 @@ public interface DeptService {
      * @param pid /
      * @return /
      */
-    List<Dept> findByPid(String pid);
+    List<Dept> findByPid(long pid);
 
     /**
      * 根据角色ID查询
      * @param id /
      * @return /
      */
-    Set<Dept> findByRoleId(String id);
+    Set<Dept> findByRoleId(Long id);
 
     /**
      * 导出数据
@@ -114,7 +114,7 @@ public interface DeptService {
      * @param deptList
      * @return
      */
-    List<String> getDeptChildren(List<Dept> deptList);
+    List<Long> getDeptChildren(List<Dept> deptList);
 
     /**
      * 验证是否被角色或用户关联

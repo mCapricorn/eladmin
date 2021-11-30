@@ -50,7 +50,7 @@ public interface LocalStorageService {
      * @param id /
      * @return /
      */
-    LocalStorageDto findById(String id);
+    LocalStorageDto findById(Long id);
 
     /**
      * 上传
@@ -70,7 +70,7 @@ public interface LocalStorageService {
      * 多选删除
      * @param ids /
      */
-    void deleteAll(String[] ids);
+    void deleteAll(Long[] ids);
 
     /**
      * 导出数据

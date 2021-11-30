@@ -17,8 +17,6 @@ package me.zhengjie.domain;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
@@ -30,12 +28,13 @@ import java.io.Serializable;
  */
 @Data
 @Entity
-@Document(collection = "tool_qiniu_config")
+@Table(name = "tool_qiniu_config")
 public class QiniuConfig implements Serializable {
 
     @Id
+    @Column(name = "config_id")
     @ApiModelProperty(value = "ID")
-    private String id;
+    private Long id;
 
     @NotBlank
     @ApiModelProperty(value = "accessKey")

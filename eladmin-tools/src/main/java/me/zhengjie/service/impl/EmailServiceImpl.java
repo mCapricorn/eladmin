@@ -15,7 +15,6 @@
  */
 package me.zhengjie.service.impl;
 
-import cn.hutool.core.util.IdUtil;
 import cn.hutool.extra.mail.Mail;
 import cn.hutool.extra.mail.MailAccount;
 import lombok.RequiredArgsConstructor;
@@ -47,7 +46,7 @@ public class EmailServiceImpl implements EmailService {
     @CachePut(key = "'config'")
     @Transactional(rollbackFor = Exception.class)
     public EmailConfig config(EmailConfig emailConfig, EmailConfig old) throws Exception {
-        emailConfig.setId("1");
+        emailConfig.setId(1L);
         if(!emailConfig.getPass().equals(old.getPass())){
             // 对称加密
             emailConfig.setPass(EncryptUtils.desEncrypt(emailConfig.getPass()));
@@ -58,7 +57,7 @@ public class EmailServiceImpl implements EmailService {
     @Override
     @Cacheable(key = "'config'")
     public EmailConfig find() {
-        Optional<EmailConfig> emailConfig = emailRepository.findById("1");
+        Optional<EmailConfig> emailConfig = emailRepository.findById(1L);
         return emailConfig.orElseGet(EmailConfig::new);
     }
 

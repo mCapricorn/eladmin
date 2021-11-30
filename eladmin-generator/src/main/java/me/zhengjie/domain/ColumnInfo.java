@@ -20,8 +20,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import me.zhengjie.utils.GenUtil;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -34,13 +32,14 @@ import java.io.Serializable;
 @Setter
 @Entity
 @NoArgsConstructor
-@Document(collection = "code_column_config")
+@Table(name = "code_column_config")
 public class ColumnInfo implements Serializable {
 
     @Id
+    @Column(name = "column_id")
     @ApiModelProperty(value = "ID", hidden = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
 
     @ApiModelProperty(value = "表名")
     private String tableName;

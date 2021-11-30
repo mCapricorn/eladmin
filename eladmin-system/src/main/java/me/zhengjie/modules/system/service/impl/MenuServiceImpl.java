@@ -83,7 +83,7 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     @Cacheable(key = "'id:' + #p0")
-    public MenuDto findById(String id) {
+    public MenuDto findById(long id) {
         Menu menu = menuRepository.findById(id).orElseGet(Menu::new);
         ValidationUtil.isNull(menu.getId(),"Menu","id",id);
         return menuMapper.toDto(menu);
@@ -96,9 +96,9 @@ public class MenuServiceImpl implements MenuService {
      */
     @Override
     @Cacheable(key = "'user:' + #p0")
-    public List<MenuDto> findByUser(String currentUserId) {
+    public List<MenuDto> findByUser(Long currentUserId) {
         List<RoleSmallDto> roles = roleService.findByUsersId(currentUserId);
-        Set<String> roleIds = roles.stream().map(RoleSmallDto::getId).collect(Collectors.toSet());
+        Set<Long> roleIds = roles.stream().map(RoleSmallDto::getId).collect(Collectors.toSet());
         LinkedHashSet<Menu> menus = menuRepository.findByRoleIdsAndTypeNot(roleIds, 2);
         return menus.stream().map(menuMapper::toDto).collect(Collectors.toList());
     }
@@ -156,8 +156,8 @@ public class MenuServiceImpl implements MenuService {
         }
 
         // 记录的父节点ID
-        String oldPid = menu.getPid();
-        String newPid = resources.getPid();
+        Long oldPid = menu.getPid();
+        Long newPid = resources.getPid();
 
         if(StringUtils.isNotBlank(resources.getComponentName())){
             menu1 = menuRepository.findByComponentName(resources.getComponentName());
@@ -210,7 +210,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public List<MenuDto> getMenus(String pid) {
+    public List<MenuDto> getMenus(Long pid) {
         List<Menu> menus;
         if(pid != null && !pid.equals(0L)){
             menus = menuRepository.findByPid(pid);
@@ -233,7 +233,7 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public List<MenuDto> buildTree(List<MenuDto> menuDtos) {
         List<MenuDto> trees = new ArrayList<>();
-        Set<String> ids = new HashSet<>();
+        Set<Long> ids = new HashSet<>();
         for (MenuDto menuDTO : menuDtos) {
             if (menuDTO.getPid() == null) {
                 trees.add(menuDTO);
@@ -308,7 +308,7 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public Menu findOne(String id) {
+    public Menu findOne(Long id) {
         Menu menu = menuRepository.findById(id).orElseGet(Menu::new);
         ValidationUtil.isNull(menu.getId(),"Menu","id",id);
         return menu;
@@ -331,7 +331,7 @@ public class MenuServiceImpl implements MenuService {
         FileUtil.downloadExcel(list, response);
     }
 
-    private void updateSubCnt(String menuId){
+    private void updateSubCnt(Long menuId){
         if(menuId != null){
             int count = menuRepository.countByPid(menuId);
             menuRepository.updateSubCntById(count, menuId);
@@ -342,12 +342,12 @@ public class MenuServiceImpl implements MenuService {
      * 清理缓存
      * @param id 菜单ID
      */
-    public void delCaches(String id){
+    public void delCaches(Long id){
         List<User> users = userRepository.findByMenuId(id);
         redisUtils.del(CacheKey.MENU_ID + id);
         redisUtils.delByKeys(CacheKey.MENU_USER, users.stream().map(User::getId).collect(Collectors.toSet()));
         // 清除 Role 缓存
-        List<Role> roles = roleService.findInMenuId(new ArrayList<String>(){{
+        List<Role> roles = roleService.findInMenuId(new ArrayList<Long>(){{
             add(id);
         }});
         redisUtils.delByKeys(CacheKey.ROLE_ID, roles.stream().map(Role::getId).collect(Collectors.toSet()));

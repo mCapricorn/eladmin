@@ -28,7 +28,7 @@ import java.util.Set;
  * @author Zheng Jie
  * @date 2018-11-22
  */
-public interface UserRepository extends JpaRepository<User, String>, JpaSpecificationExecutor<User> {
+public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
 
     /**
      * 根据用户名查询
@@ -77,7 +77,7 @@ public interface UserRepository extends JpaRepository<User, String>, JpaSpecific
      */
     @Query(value = "SELECT u.* FROM sys_user u, sys_users_roles r WHERE" +
             " u.user_id = r.user_id AND r.role_id = ?1", nativeQuery = true)
-    List<User> findByRoleId(String roleId);
+    List<User> findByRoleId(Long roleId);
 
     /**
      * 根据角色中的部门查询
@@ -86,7 +86,7 @@ public interface UserRepository extends JpaRepository<User, String>, JpaSpecific
      */
     @Query(value = "SELECT u.* FROM sys_user u, sys_users_roles r, sys_roles_depts d WHERE " +
             "u.user_id = r.user_id AND r.role_id = d.role_id AND d.dept_id = ?1 group by u.user_id", nativeQuery = true)
-    List<User> findByRoleDeptId(String deptId);
+    List<User> findByRoleDeptId(Long deptId);
 
     /**
      * 根据菜单查询
@@ -95,13 +95,13 @@ public interface UserRepository extends JpaRepository<User, String>, JpaSpecific
      */
     @Query(value = "SELECT u.* FROM sys_user u, sys_users_roles ur, sys_roles_menus rm WHERE\n" +
             "u.user_id = ur.user_id AND ur.role_id = rm.role_id AND rm.menu_id = ?1 group by u.user_id", nativeQuery = true)
-    List<User> findByMenuId(String id);
+    List<User> findByMenuId(Long id);
 
     /**
      * 根据Id删除
      * @param ids /
      */
-    void deleteAllByIdIn(Set<String> ids);
+    void deleteAllByIdIn(Set<Long> ids);
 
     /**
      * 根据岗位查询
@@ -109,7 +109,7 @@ public interface UserRepository extends JpaRepository<User, String>, JpaSpecific
      * @return /
      */
     @Query(value = "SELECT count(1) FROM sys_user u, sys_users_jobs j WHERE u.user_id = j.user_id AND j.job_id IN ?1", nativeQuery = true)
-    int countByJobs(Set<String> ids);
+    int countByJobs(Set<Long> ids);
 
     /**
      * 根据部门查询
@@ -117,7 +117,7 @@ public interface UserRepository extends JpaRepository<User, String>, JpaSpecific
      * @return /
      */
     @Query(value = "SELECT count(1) FROM sys_user u WHERE u.dept_id IN ?1", nativeQuery = true)
-    int countByDepts(Set<String> deptIds);
+    int countByDepts(Set<Long> deptIds);
 
     /**
      * 根据角色查询
@@ -126,5 +126,5 @@ public interface UserRepository extends JpaRepository<User, String>, JpaSpecific
      */
     @Query(value = "SELECT count(1) FROM sys_user u, sys_users_roles r WHERE " +
             "u.user_id = r.user_id AND r.role_id in ?1", nativeQuery = true)
-    int countByRoles(Set<String> ids);
+    int countByRoles(Set<Long> ids);
 }

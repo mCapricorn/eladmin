@@ -51,7 +51,7 @@ public interface AppService {
      * @param id /
      * @return /
      */
-    AppDto findById(String id);
+    AppDto findById(Long id);
 
     /**
      * 创建
@@ -69,7 +69,7 @@ public interface AppService {
      * 删除
      * @param ids /
      */
-    void delete(Set<String> ids);
+    void delete(Set<Long> ids);
 
     /**
      * 导出数据

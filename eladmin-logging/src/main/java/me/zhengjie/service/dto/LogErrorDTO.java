@@ -26,7 +26,7 @@ import java.sql.Timestamp;
 @Data
 public class LogErrorDTO implements Serializable {
 
-    private String id;
+    private Long id;
 
     private String username;
 

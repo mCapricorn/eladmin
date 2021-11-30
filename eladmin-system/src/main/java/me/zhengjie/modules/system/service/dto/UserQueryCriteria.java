@@ -31,10 +31,10 @@ import java.util.Set;
 public class UserQueryCriteria implements Serializable {
 
     @Query
-    private String id;
+    private Long id;
 
     @Query(propName = "id", type = Query.Type.IN, joinName = "dept")
-    private Set<String> deptIds = new HashSet<>();
+    private Set<Long> deptIds = new HashSet<>();
 
     @Query(blurry = "email,username,nickName")
     private String blurry;
@@ -42,7 +42,7 @@ public class UserQueryCriteria implements Serializable {
     @Query
     private Boolean enabled;
 
-    private String deptId;
+    private Long deptId;
 
     @Query(type = Query.Type.BETWEEN)
     private List<Timestamp> createTime;

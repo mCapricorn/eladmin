@@ -18,8 +18,6 @@ package me.zhengjie.domain;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -31,12 +29,14 @@ import java.sql.Timestamp;
  */
 @Data
 @Entity
-@Document(collection = "tool_qiniu_content")
+@Table(name = "tool_qiniu_content")
 public class QiniuContent implements Serializable {
 
     @Id
+    @Column(name = "content_id")
     @ApiModelProperty(value = "ID", hidden = true)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "name")
     @ApiModelProperty(value = "文件名")

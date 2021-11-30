@@ -19,8 +19,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -32,13 +30,15 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-@Document(collection="sys_dict_detail")
+@Table(name="sys_dict_detail")
 public class DictDetail extends BaseEntity implements Serializable {
 
     @Id
+    @Column(name = "detail_id")
     @NotNull(groups = Update.class)
     @ApiModelProperty(value = "ID", hidden = true)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @JoinColumn(name = "dict_id")
     @ManyToOne(fetch=FetchType.LAZY)

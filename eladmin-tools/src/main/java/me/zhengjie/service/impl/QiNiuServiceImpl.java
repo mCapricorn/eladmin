@@ -15,7 +15,6 @@
  */
 package me.zhengjie.service.impl;
 
-import cn.hutool.core.util.IdUtil;
 import com.alibaba.fastjson.JSON;
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
@@ -68,7 +67,7 @@ public class QiNiuServiceImpl implements QiNiuService {
     @Override
     @Cacheable(key = "'config'")
     public QiniuConfig find() {
-        Optional<QiniuConfig> qiniuConfig = qiNiuConfigRepository.findById("1");
+        Optional<QiniuConfig> qiniuConfig = qiNiuConfigRepository.findById(1L);
         return qiniuConfig.orElseGet(QiniuConfig::new);
     }
 
@@ -76,7 +75,7 @@ public class QiNiuServiceImpl implements QiNiuService {
     @CachePut(key = "'config'")
     @Transactional(rollbackFor = Exception.class)
     public QiniuConfig config(QiniuConfig qiniuConfig) {
-        qiniuConfig.setId("1");
+        qiniuConfig.setId(1L);
         String http = "http://", https = "https://";
         if (!(qiniuConfig.getHost().toLowerCase().startsWith(http)||qiniuConfig.getHost().toLowerCase().startsWith(https))) {
             throw new BadRequestException("外链域名必须以http://或者https://开头");
@@ -134,7 +133,7 @@ public class QiNiuServiceImpl implements QiNiuService {
     }
 
     @Override
-    public QiniuContent findByContentId(String id) {
+    public QiniuContent findByContentId(Long id) {
         QiniuContent qiniuContent = qiniuContentRepository.findById(id).orElseGet(QiniuContent::new);
         ValidationUtil.isNull(qiniuContent.getId(),"QiniuContent", "id",id);
         return qiniuContent;
@@ -208,8 +207,8 @@ public class QiNiuServiceImpl implements QiNiuService {
     }
 
     @Override
-    public void deleteAll(String[] ids, QiniuConfig config) {
-        for (String id : ids) {
+    public void deleteAll(Long[] ids, QiniuConfig config) {
+        for (Long id : ids) {
             delete(findByContentId(id), config);
         }
     }

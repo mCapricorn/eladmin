@@ -19,8 +19,6 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -33,14 +31,16 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Document(collection = "sys_quartz_job")
+@Table(name = "sys_quartz_job")
 public class QuartzJob extends BaseEntity implements Serializable {
 
     public static final String JOB_KEY = "JOB_KEY";
 
     @Id
+    @Column(name = "job_id")
     @NotNull(groups = {Update.class})
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Transient
     @ApiModelProperty(value = "用于子任务唯一标识", hidden = true)

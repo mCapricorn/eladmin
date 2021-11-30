@@ -37,7 +37,7 @@ public interface UserService {
      * @param id ID
      * @return /
      */
-    UserDto findById(String id);
+    UserDto findById(long id);
 
     /**
      * 新增用户
@@ -55,7 +55,7 @@ public interface UserService {
      * 删除用户
      * @param ids /
      */
-    void delete(Set<String> ids);
+    void delete(Set<Long> ids);
 
     /**
      * 根据用户名查询

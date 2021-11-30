@@ -73,7 +73,7 @@ public class TokenProvider implements InitializingBean {
     public String createToken(Authentication authentication) {
         return jwtBuilder
                 // 加入ID确保生成的 Token 都不一致
-                .setId(IdUtil.objectId())
+                .setId(IdUtil.simpleUUID())
                 .claim(AUTHORITIES_KEY, authentication.getName())
                 .setSubject(authentication.getName())
                 .compact();

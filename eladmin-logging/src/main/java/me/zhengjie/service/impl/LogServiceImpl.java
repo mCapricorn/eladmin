@@ -133,7 +133,7 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public Object findByErrDetail(String id) {
+    public Object findByErrDetail(Long id) {
         Log log = logRepository.findById(id).orElseGet(Log::new);
         ValidationUtil.isNull(log.getId(), "Log", "id", id);
         byte[] details = log.getExceptionDetail();

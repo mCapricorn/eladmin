@@ -66,9 +66,9 @@ public class SecurityUtils {
      * 获取系统用户ID
      * @return 系统用户ID
      */
-    public static String getCurrentUserId() {
+    public static Long getCurrentUserId() {
         UserDetails userDetails = getCurrentUser();
-        return new JSONObject(new JSONObject(userDetails).get("user")).get("id", String.class);
+        return new JSONObject(new JSONObject(userDetails).get("user")).get("id", Long.class);
     }
 
     /**

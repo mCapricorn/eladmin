@@ -51,7 +51,7 @@ public interface ServerDeployService {
      * @param id /
      * @return /
      */
-    ServerDeployDto findById(String id);
+    ServerDeployDto findById(Long id);
 
     /**
      * 创建
@@ -69,7 +69,7 @@ public interface ServerDeployService {
      * 删除
      * @param ids /
      */
-    void delete(Set<String> ids);
+    void delete(Set<Long> ids);
 
     /**
      * 根据IP查询

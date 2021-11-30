@@ -101,7 +101,7 @@ public class QuartzJobController {
     @ApiOperation("更改定时任务状态")
     @PutMapping(value = "/{id}")
     @PreAuthorize("@el.check('timing:edit')")
-    public ResponseEntity<Object> update(@PathVariable String id){
+    public ResponseEntity<Object> update(@PathVariable Long id){
         quartzJobService.updateIsPause(quartzJobService.findById(id));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -110,7 +110,7 @@ public class QuartzJobController {
     @ApiOperation("执行定时任务")
     @PutMapping(value = "/exec/{id}")
     @PreAuthorize("@el.check('timing:edit')")
-    public ResponseEntity<Object> execution(@PathVariable String id){
+    public ResponseEntity<Object> execution(@PathVariable Long id){
         quartzJobService.execution(quartzJobService.findById(id));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -119,7 +119,7 @@ public class QuartzJobController {
     @ApiOperation("删除定时任务")
     @DeleteMapping
     @PreAuthorize("@el.check('timing:del')")
-    public ResponseEntity<Object> delete(@RequestBody Set<String> ids){
+    public ResponseEntity<Object> delete(@RequestBody Set<Long> ids){
         quartzJobService.delete(ids);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -30,5 +30,5 @@ public interface DataService {
      * @param user /
      * @return /
      */
-    List<String> getDeptIds(UserDto user);
+    List<Long> getDeptIds(UserDto user);
 }

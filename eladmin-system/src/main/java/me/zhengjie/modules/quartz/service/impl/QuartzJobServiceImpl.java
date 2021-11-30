@@ -70,7 +70,7 @@ public class QuartzJobServiceImpl implements QuartzJobService {
     }
 
     @Override
-    public QuartzJob findById(String id) {
+    public QuartzJob findById(Long id) {
         QuartzJob quartzJob = quartzJobRepository.findById(id).orElseGet(QuartzJob::new);
         ValidationUtil.isNull(quartzJob.getId(),"QuartzJob","id",id);
         return quartzJob;
@@ -121,8 +121,8 @@ public class QuartzJobServiceImpl implements QuartzJobService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void delete(Set<String> ids) {
-        for (String id : ids) {
+    public void delete(Set<Long> ids) {
+        for (Long id : ids) {
             QuartzJob quartzJob = findById(id);
             quartzManage.deleteJob(quartzJob);
             quartzJobRepository.delete(quartzJob);
@@ -138,7 +138,7 @@ public class QuartzJobServiceImpl implements QuartzJobService {
                 // 如果是手动清除子任务id，会出现id为空字符串的问题
                 continue;
             }
-            QuartzJob quartzJob = findById(id);
+            QuartzJob quartzJob = findById(Long.parseLong(id));
             // 执行任务
             String uuid = IdUtil.simpleUUID();
             quartzJob.setUuid(uuid);

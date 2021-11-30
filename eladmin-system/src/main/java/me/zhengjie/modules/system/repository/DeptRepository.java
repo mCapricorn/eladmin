@@ -27,14 +27,14 @@ import java.util.Set;
 * @author Zheng Jie
 * @date 2019-03-25
 */
-public interface DeptRepository extends JpaRepository<Dept, String>, JpaSpecificationExecutor<Dept> {
+public interface DeptRepository extends JpaRepository<Dept, Long>, JpaSpecificationExecutor<Dept> {
 
     /**
      * 根据 PID 查询
      * @param id pid
      * @return /
      */
-    List<Dept> findByPid(String id);
+    List<Dept> findByPid(Long id);
 
     /**
      * 获取顶级部门
@@ -49,14 +49,14 @@ public interface DeptRepository extends JpaRepository<Dept, String>, JpaSpecific
      */
     @Query(value = "select d.* from sys_dept d, sys_roles_depts r where " +
             "d.dept_id = r.dept_id and r.role_id = ?1", nativeQuery = true)
-    Set<Dept> findByRoleId(String roleId);
+    Set<Dept> findByRoleId(Long roleId);
 
     /**
      * 判断是否存在子节点
      * @param pid /
      * @return /
      */
-    int countByPid(String pid);
+    int countByPid(Long pid);
 
     /**
      * 根据ID更新sub_count
@@ -65,5 +65,5 @@ public interface DeptRepository extends JpaRepository<Dept, String>, JpaSpecific
      */
     @Modifying
     @Query(value = " update sys_dept set sub_count = ?1 where dept_id = ?2 ",nativeQuery = true)
-    void updateSubCntById(Integer count, String id);
+    void updateSubCntById(Integer count, Long id);
 }
