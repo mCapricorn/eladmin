@@ -28,7 +28,7 @@ import java.io.Serializable;
 @Setter
 public class LocalStorageDto extends BaseDTO implements Serializable {
 
-    private Long id;
+    private String id;
 
     private String realName;
 

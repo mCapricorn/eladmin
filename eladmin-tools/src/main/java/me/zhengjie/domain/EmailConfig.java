@@ -17,6 +17,8 @@ package me.zhengjie.domain;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
@@ -28,13 +30,12 @@ import java.io.Serializable;
  */
 @Entity
 @Data
-@Table(name = "tool_email_config")
+@Document(collection = "tool_email_config")
 public class EmailConfig implements Serializable {
 
     @Id
-    @Column(name = "config_id")
     @ApiModelProperty(value = "ID", hidden = true)
-    private Long id;
+    private String id;
 
     @NotBlank
     @ApiModelProperty(value = "邮件服务器SMTP地址")

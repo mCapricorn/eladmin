@@ -19,6 +19,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -30,14 +32,13 @@ import java.sql.Timestamp;
 @Entity
 @Getter
 @Setter
-@Table(name = "sys_log")
+@Document(collection = "sys_log")
 @NoArgsConstructor
 public class Log  implements Serializable {
 
     @Id
-    @Column(name = "log_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     /** 操作用户 */
     private String username;

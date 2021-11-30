@@ -15,6 +15,7 @@
  */
 package me.zhengjie.service.impl;
 
+import cn.hutool.core.util.IdUtil;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
@@ -46,7 +47,7 @@ public class AliPayServiceImpl implements AliPayService {
     @Override
     @Cacheable(key = "'config'")
     public AlipayConfig find() {
-        Optional<AlipayConfig> alipayConfig = alipayRepository.findById(1L);
+        Optional<AlipayConfig> alipayConfig = alipayRepository.findById("1");
         return alipayConfig.orElseGet(AlipayConfig::new);
     }
 
@@ -54,7 +55,7 @@ public class AliPayServiceImpl implements AliPayService {
     @CachePut(key = "'config'")
     @Transactional(rollbackFor = Exception.class)
     public AlipayConfig config(AlipayConfig alipayConfig) {
-        alipayConfig.setId(1L);
+        alipayConfig.setId("1");
         return alipayRepository.save(alipayConfig);
     }
 

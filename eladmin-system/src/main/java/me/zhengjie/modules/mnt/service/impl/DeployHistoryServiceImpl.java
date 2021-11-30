@@ -67,7 +67,7 @@ public class DeployHistoryServiceImpl implements DeployHistoryService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void create(DeployHistory resources) {
-        resources.setId(IdUtil.simpleUUID());
+        resources.setId(IdUtil.objectId());
         deployhistoryRepository.save(resources);
     }
 

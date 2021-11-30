@@ -98,7 +98,7 @@ public class QiniuController {
     @Log("下载文件")
     @ApiOperation("下载文件")
     @GetMapping(value = "/download/{id}")
-    public ResponseEntity<Object> download(@PathVariable Long id){
+    public ResponseEntity<Object> download(@PathVariable String id){
         Map<String,Object> map = new HashMap<>(1);
         map.put("url", qiNiuService.download(qiNiuService.findByContentId(id),qiNiuService.find()));
         return new ResponseEntity<>(map,HttpStatus.OK);
@@ -107,7 +107,7 @@ public class QiniuController {
     @Log("删除文件")
     @ApiOperation("删除文件")
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Object> delete(@PathVariable Long id){
+    public ResponseEntity<Object> delete(@PathVariable String id){
         qiNiuService.delete(qiNiuService.findByContentId(id),qiNiuService.find());
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -115,7 +115,7 @@ public class QiniuController {
     @Log("删除多张图片")
     @ApiOperation("删除多张图片")
     @DeleteMapping
-    public ResponseEntity<Object> deleteAll(@RequestBody Long[] ids) {
+    public ResponseEntity<Object> deleteAll(@RequestBody String[] ids) {
         qiNiuService.deleteAll(ids, qiNiuService.find());
         return new ResponseEntity<>(HttpStatus.OK);
     }

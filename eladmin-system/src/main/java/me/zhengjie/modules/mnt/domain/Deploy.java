@@ -21,6 +21,8 @@ import cn.hutool.core.bean.copier.CopyOptions;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
@@ -32,14 +34,12 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name="mnt_deploy")
+@Document(collection="mnt_deploy")
 public class Deploy extends BaseEntity implements Serializable {
 
     @Id
-	@Column(name = "deploy_id")
 	@ApiModelProperty(value = "ID", hidden = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
 	@ManyToMany
 	@ApiModelProperty(name = "服务器", hidden = true)

@@ -19,6 +19,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -35,15 +37,13 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name="sys_user")
+@Document(collection="sys_user")
 public class User extends BaseEntity implements Serializable {
 
     @Id
-    @Column(name = "user_id")
     @NotNull(groups = Update.class)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(value = "ID", hidden = true)
-    private Long id;
+    private String id;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @ApiModelProperty(value = "用户角色")

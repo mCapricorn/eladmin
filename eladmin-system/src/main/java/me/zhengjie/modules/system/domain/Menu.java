@@ -20,6 +20,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -34,15 +35,13 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name = "sys_menu")
+@Document(collection = "sys_menu")
 public class Menu extends BaseEntity implements Serializable {
 
     @Id
-    @Column(name = "menu_id")
     @NotNull(groups = {Update.class})
     @ApiModelProperty(value = "ID", hidden = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @JSONField(serialize = false)
     @ManyToMany(mappedBy = "menus")
@@ -83,7 +82,7 @@ public class Menu extends BaseEntity implements Serializable {
     private Boolean hidden;
 
     @ApiModelProperty(value = "上级菜单")
-    private Long pid;
+    private String pid;
 
     @ApiModelProperty(value = "子节点数目", hidden = true)
     private Integer subCount = 0;

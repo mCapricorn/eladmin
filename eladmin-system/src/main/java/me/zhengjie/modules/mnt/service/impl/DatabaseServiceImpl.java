@@ -70,7 +70,7 @@ public class DatabaseServiceImpl implements DatabaseService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void create(Database resources) {
-        resources.setId(IdUtil.simpleUUID());
+        resources.setId(IdUtil.objectId());
         databaseRepository.save(resources);
     }
 

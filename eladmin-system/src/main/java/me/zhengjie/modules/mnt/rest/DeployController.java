@@ -90,7 +90,7 @@ public class DeployController {
 	@ApiOperation(value = "删除部署")
 	@DeleteMapping
 	@PreAuthorize("@el.check('deploy:del')")
-	public ResponseEntity<Object> delete(@RequestBody Set<Long> ids){
+	public ResponseEntity<Object> delete(@RequestBody Set<String> ids){
 		deployService.delete(ids);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
@@ -100,7 +100,7 @@ public class DeployController {
 	@PostMapping(value = "/upload")
 	@PreAuthorize("@el.check('deploy:edit')")
 	public ResponseEntity<Object> upload(@RequestBody MultipartFile file, HttpServletRequest request)throws Exception{
-		Long id = Long.valueOf(request.getParameter("id"));
+		String id = request.getParameter("id");
 		String fileName = "";
 		if(file != null){
 			fileName = file.getOriginalFilename();

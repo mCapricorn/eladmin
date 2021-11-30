@@ -19,6 +19,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
@@ -32,7 +34,7 @@ import java.io.Serializable;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "code_gen_config")
+@Document(collection = "code_gen_config")
 public class GenConfig implements Serializable {
 
     public GenConfig(String tableName) {
@@ -40,10 +42,9 @@ public class GenConfig implements Serializable {
     }
 
     @Id
-    @Column(name = "config_id")
     @ApiModelProperty(value = "ID", hidden = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @NotBlank
     @ApiModelProperty(value = "表名")

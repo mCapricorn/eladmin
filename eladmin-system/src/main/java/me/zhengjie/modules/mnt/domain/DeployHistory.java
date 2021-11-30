@@ -21,6 +21,8 @@ import cn.hutool.core.bean.copier.CopyOptions;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -32,11 +34,10 @@ import java.sql.Timestamp;
 @Entity
 @Getter
 @Setter
-@Table(name="mnt_deploy_history")
+@Document(collection="mnt_deploy_history")
 public class DeployHistory implements Serializable {
 
     @Id
-    @Column(name = "history_id")
 	@ApiModelProperty(value = "ID", hidden = true)
     private String id;
 
@@ -54,7 +55,7 @@ public class DeployHistory implements Serializable {
     private String deployUser;
 
 	@ApiModelProperty(value = "部署ID")
-	private Long deployId;
+	private String deployId;
 
     public void copy(DeployHistory source){
         BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));

@@ -18,6 +18,8 @@ package me.zhengjie.modules.quartz.domain;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -28,14 +30,12 @@ import java.sql.Timestamp;
  */
 @Entity
 @Data
-@Table(name = "sys_quartz_log")
+@Document(collection = "sys_quartz_log")
 public class QuartzLog implements Serializable {
 
     @Id
-    @Column(name = "log_id")
     @ApiModelProperty(value = "ID", hidden = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @ApiModelProperty(value = "任务名称", hidden = true)
     private String jobName;

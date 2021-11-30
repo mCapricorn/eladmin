@@ -91,7 +91,7 @@ public class LocalStorageController {
     @Log("删除文件")
     @DeleteMapping
     @ApiOperation("多选删除")
-    public ResponseEntity<Object> delete(@RequestBody Long[] ids) {
+    public ResponseEntity<Object> delete(@RequestBody String[] ids) {
         localStorageService.deleteAll(ids);
         return new ResponseEntity<>(HttpStatus.OK);
     }

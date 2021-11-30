@@ -76,14 +76,14 @@ public interface QuartzJobService {
      * 删除任务
      * @param ids /
      */
-    void delete(Set<Long> ids);
+    void delete(Set<String> ids);
 
     /**
      * 根据ID查询
      * @param id ID
      * @return /
      */
-    QuartzJob findById(Long id);
+    QuartzJob findById(String id);
 
     /**
      * 更改定时任务状态
