@@ -40,7 +40,7 @@ public class QiniuContent implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Field("name")
     @ApiModelProperty(value = "文件名")
     private String key;
 
@@ -61,6 +61,6 @@ public class QiniuContent implements Serializable {
 
     @UpdateTimestamp
     @ApiModelProperty(value = "创建或更新时间")
-    @Column(name = "update_time")
+    @Field("update_time")
     private Timestamp updateTime;
 }

@@ -53,7 +53,7 @@ public class AlipayConfig implements Serializable {
     @ApiModelProperty(value = "签名方式")
     private String signType="RSA2";
 
-    @Column(name = "gateway_url")
+    @Field("gateway_url")
     @ApiModelProperty(value = "支付宝开放安全地址", hidden = true)
     private String gatewayUrl = "https://openapi.alipaydev.com/gateway.do";
 

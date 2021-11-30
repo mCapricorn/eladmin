@@ -53,7 +53,7 @@ public class Menu extends BaseEntity implements Serializable {
     @ApiModelProperty(value = "菜单标题")
     private String title;
 
-    @Column(name = "name")
+    @Field("name")
     @ApiModelProperty(value = "菜单组件名称")
     private String componentName;
 
