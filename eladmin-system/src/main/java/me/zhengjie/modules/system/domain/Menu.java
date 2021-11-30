@@ -20,6 +20,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -46,8 +47,9 @@ public class Menu extends BaseEntity implements Serializable {
     private Long id;
 
     @JSONField(serialize = false)
-    @ManyToMany(mappedBy = "menus")
+//    @ManyToMany(mappedBy = "menus")
     @ApiModelProperty(value = "菜单角色")
+    @DBRef
     private Set<Role> roles;
 
     @ApiModelProperty(value = "菜单标题")

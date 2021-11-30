@@ -21,6 +21,7 @@ import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
 import me.zhengjie.utils.enums.DataScopeEnum;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -49,22 +50,25 @@ public class Role extends BaseEntity implements Serializable {
     private Long id;
 
     @JSONField(serialize = false)
-    @ManyToMany(mappedBy = "roles")
+//    @ManyToMany(mappedBy = "roles")
     @ApiModelProperty(value = "用户", hidden = true)
+    @DBRef
     private Set<User> users;
 
-    @ManyToMany
-    @JoinTable(name = "sys_roles_menus",
-            joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "role_id")},
-            inverseJoinColumns = {@JoinColumn(name = "menu_id",referencedColumnName = "menu_id")})
+//    @ManyToMany
+//    @JoinTable(name = "sys_roles_menus",
+//            joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "role_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "menu_id",referencedColumnName = "menu_id")})
     @ApiModelProperty(value = "菜单", hidden = true)
+    @DBRef
     private Set<Menu> menus;
 
-    @ManyToMany
-    @JoinTable(name = "sys_roles_depts",
-            joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "role_id")},
-            inverseJoinColumns = {@JoinColumn(name = "dept_id",referencedColumnName = "dept_id")})
+//    @ManyToMany
+//    @JoinTable(name = "sys_roles_depts",
+//            joinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "role_id")},
+//            inverseJoinColumns = {@JoinColumn(name = "dept_id",referencedColumnName = "dept_id")})
     @ApiModelProperty(value = "部门", hidden = true)
+    @DBRef
     private Set<Dept> depts;
 
     @NotBlank

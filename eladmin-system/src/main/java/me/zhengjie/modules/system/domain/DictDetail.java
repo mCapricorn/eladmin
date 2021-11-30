@@ -19,6 +19,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -42,9 +43,10 @@ public class DictDetail extends BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JoinColumn(name = "dict_id")
-    @ManyToOne(fetch=FetchType.LAZY)
+//    @JoinColumn(name = "dict_id")
+//    @ManyToOne(fetch=FetchType.LAZY)
     @ApiModelProperty(value = "字典", hidden = true)
+    @DBRef
     private Dict dict;
 
     @ApiModelProperty(value = "字典标签")
