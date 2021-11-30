@@ -21,6 +21,8 @@ import cn.hutool.core.bean.copier.CopyOptions;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -31,7 +33,7 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-@Table(name="mnt_app")
+@Document(collection="mnt_app")
 public class App extends BaseEntity implements Serializable {
 
     @Id

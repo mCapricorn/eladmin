@@ -19,6 +19,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -30,7 +32,7 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-@Table(name="sys_dict_detail")
+@Document(collection="sys_dict_detail")
 public class DictDetail extends BaseEntity implements Serializable {
 
     @Id

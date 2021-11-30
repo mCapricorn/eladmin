@@ -19,6 +19,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -32,7 +34,7 @@ import java.util.Objects;
 @Entity
 @Getter
 @Setter
-@Table(name="sys_job")
+@Document(collection="sys_job")
 public class Job extends BaseEntity implements Serializable {
 
     @Id

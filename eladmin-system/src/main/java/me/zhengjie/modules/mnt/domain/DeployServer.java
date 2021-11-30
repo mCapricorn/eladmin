@@ -13,48 +13,41 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package me.zhengjie.domain;
+package me.zhengjie.modules.mnt.domain;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.bean.copier.CopyOptions;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import me.zhengjie.base.BaseEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
- * 邮件配置类，数据存覆盖式存入数据存
- * @author Zheng Jie
- * @date 2018-12-26
+ * @author zhanghouying
+ * @date 2019-08-24
  */
 @Entity
-@Data
-@Document(collection = "tool_email_config")
-public class EmailConfig implements Serializable {
+@Getter
+@Setter
+@Document(collection="mnt_deploy_server")
+public class DeployServer extends BaseEntity implements Serializable {
 
     @Id
-    @Column(name = "config_id")
     @ApiModelProperty(value = "ID", hidden = true)
-    private Long id;
+    private String id;
 
-    @NotBlank
-    @ApiModelProperty(value = "邮件服务器SMTP地址")
-    private String host;
+    @ApiModelProperty(name = "deployId")
+    private String deployId;
 
-    @NotBlank
-    @ApiModelProperty(value = "邮件服务器 SMTP 端口")
-    private String port;
+    @ApiModelProperty(value = "serverId")
+    private String serverId;
 
-    @NotBlank
-    @ApiModelProperty(value = "发件者用户名")
-    private String user;
-
-    @NotBlank
-    @ApiModelProperty(value = "密码")
-    private String pass;
-
-    @NotBlank
-    @ApiModelProperty(value = "收件人")
-    private String fromUser;
+    public void copy(DeployServer source){
+        BeanUtil.copyProperties(source,this, CopyOptions.create().setIgnoreNullValue(true));
+    }
 }
