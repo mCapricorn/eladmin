@@ -22,6 +22,7 @@ import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -37,14 +38,10 @@ import java.io.Serializable;
 @Document(collection="mnt_deploy_server")
 public class DeployServer extends BaseEntity implements Serializable {
 
-    @Id
-    @ApiModelProperty(value = "ID", hidden = true)
-    private String id;
-
-    @ApiModelProperty(name = "deployId")
+    @Field("deploy_id")
     private String deployId;
 
-    @ApiModelProperty(value = "serverId")
+    @Field("server_id")
     private String serverId;
 
     public void copy(DeployServer source){

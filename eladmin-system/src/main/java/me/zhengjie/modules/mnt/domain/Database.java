@@ -22,6 +22,7 @@ import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -36,8 +37,7 @@ import java.io.Serializable;
 @Document(collection="mnt_database")
 public class Database extends BaseEntity implements Serializable {
 
-    @Id
-    @Column(name = "db_id")
+    @Field("db_id")
 	@ApiModelProperty(value = "ID", hidden = true)
     private String id;
 

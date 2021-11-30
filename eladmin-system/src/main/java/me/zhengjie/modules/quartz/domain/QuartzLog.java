@@ -19,6 +19,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -33,8 +34,7 @@ import java.sql.Timestamp;
 @Document(collection = "sys_quartz_log")
 public class QuartzLog implements Serializable {
 
-    @Id
-    @Column(name = "log_id")
+    @Field("log_id")
     @ApiModelProperty(value = "ID", hidden = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

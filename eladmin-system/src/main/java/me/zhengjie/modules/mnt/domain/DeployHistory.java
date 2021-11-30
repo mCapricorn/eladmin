@@ -22,6 +22,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -37,8 +38,7 @@ import java.sql.Timestamp;
 @Document(collection="mnt_deploy_history")
 public class DeployHistory implements Serializable {
 
-    @Id
-    @Column(name = "history_id")
+    @Field("history_id")
 	@ApiModelProperty(value = "ID", hidden = true)
     private String id;
 

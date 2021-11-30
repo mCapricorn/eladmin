@@ -20,6 +20,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -36,8 +37,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class Log  implements Serializable {
 
-    @Id
-    @Column(name = "log_id")
+    @Field("log_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

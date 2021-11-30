@@ -20,6 +20,7 @@ import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -40,8 +41,7 @@ import java.util.Set;
 @Document(collection="sys_user")
 public class User extends BaseEntity implements Serializable {
 
-    @Id
-    @Column(name = "user_id")
+    @Field("user_id")
     @NotNull(groups = Update.class)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(value = "ID", hidden = true)

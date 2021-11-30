@@ -20,6 +20,7 @@ import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -37,8 +38,7 @@ import java.util.List;
 @Document(collection="sys_dict")
 public class Dict extends BaseEntity implements Serializable {
 
-    @Id
-    @Column(name = "dict_id")
+    @Field("dict_id")
     @NotNull(groups = Update.class)
     @ApiModelProperty(value = "ID", hidden = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

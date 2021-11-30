@@ -22,6 +22,7 @@ import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
 import me.zhengjie.utils.enums.DataScopeEnum;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -41,8 +42,7 @@ import java.util.Set;
 @Document(collection = "sys_role")
 public class Role extends BaseEntity implements Serializable {
 
-    @Id
-    @Column(name = "role_id")
+    @Field("role_id")
     @NotNull(groups = {Update.class})
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(value = "ID", hidden = true)

@@ -20,6 +20,7 @@ import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -38,8 +39,7 @@ public class QuartzJob extends BaseEntity implements Serializable {
 
     public static final String JOB_KEY = "JOB_KEY";
 
-    @Id
-    @Column(name = "job_id")
+    @Field("job_id")
     @NotNull(groups = {Update.class})
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
