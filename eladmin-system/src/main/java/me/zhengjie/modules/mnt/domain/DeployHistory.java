@@ -21,12 +21,13 @@ import cn.hutool.core.bean.copier.CopyOptions;
 import lombok.Getter;
 import lombok.Setter;
 //import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 //import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
 * @author zhanghouying
@@ -49,8 +50,9 @@ public class DeployHistory implements Serializable {
     private String ip;
 
 //	@CreationTimestamp
+    @CreatedDate
 	@ApiModelProperty(value = "部署时间")
-    private Timestamp deployDate;
+    private Date deployDate;
 
 	@ApiModelProperty(value = "部署者")
     private String deployUser;

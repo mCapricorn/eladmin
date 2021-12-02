@@ -16,7 +16,8 @@
 package me.zhengjie.service.dto;
 
 import lombok.Data;
-import java.sql.Timestamp;
+
+import java.util.Date;
 import java.util.List;
 
 import me.zhengjie.annotation.Query;
@@ -32,5 +33,5 @@ public class LocalStorageQueryCriteria{
     private String blurry;
 
     @Query(type = Query.Type.BETWEEN)
-    private List<Timestamp> createTime;
+    private List<Date> createTime;
 }

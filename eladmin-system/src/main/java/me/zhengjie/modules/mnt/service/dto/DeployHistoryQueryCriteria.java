@@ -17,7 +17,8 @@ package me.zhengjie.modules.mnt.service.dto;
 
 import lombok.Data;
 import me.zhengjie.annotation.Query;
-import java.sql.Timestamp;
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,5 +38,5 @@ public class DeployHistoryQueryCriteria{
 	private Long deployId;
 
 	@Query(type = Query.Type.BETWEEN)
-	private List<Timestamp> deployDate;
+	private List<Date> deployDate;
 }

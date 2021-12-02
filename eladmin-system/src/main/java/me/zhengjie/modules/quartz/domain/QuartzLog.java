@@ -18,12 +18,13 @@ package me.zhengjie.modules.quartz.domain;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 //import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 //import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * @author Zheng Jie
@@ -64,6 +65,7 @@ public class QuartzLog implements Serializable {
     private Long time;
 
 //    @CreationTimestamp
+    @CreatedDate
     @ApiModelProperty(value = "创建时间", hidden = true)
-    private Timestamp createTime;
+    private Date createTime;
 }

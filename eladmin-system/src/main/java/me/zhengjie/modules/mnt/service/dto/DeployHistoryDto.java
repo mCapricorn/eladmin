@@ -17,7 +17,7 @@ package me.zhengjie.modules.mnt.service.dto;
 
 import lombok.Data;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
 * @author zhanghouying
@@ -44,7 +44,7 @@ public class DeployHistoryDto implements Serializable {
 	/**
 	 * 部署时间
 	 */
-	private Timestamp deployDate;
+	private Date deployDate;
 
 	/**
 	 * 部署人员

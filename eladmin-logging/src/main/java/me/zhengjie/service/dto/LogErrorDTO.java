@@ -17,7 +17,7 @@ package me.zhengjie.service.dto;
 
 import lombok.Data;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
 * @author Zheng Jie
@@ -42,5 +42,5 @@ public class LogErrorDTO implements Serializable {
 
     private String address;
 
-    private Timestamp createTime;
+    private Date createTime;
 }

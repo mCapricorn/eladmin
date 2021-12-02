@@ -18,8 +18,7 @@ package me.zhengjie.domain.vo;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import javax.validation.constraints.NotBlank;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * 交易详情，按需应该存入数据库，这里存入数据库，仅供临时测试
@@ -55,7 +54,7 @@ public class TradeVo {
 
     /** 创建时间，存入数据库时需要 */
     @ApiModelProperty(hidden = true)
-    private Timestamp createTime;
+    private Date createTime;
 
     /** 作废时间，存入数据库时需要 */
     @ApiModelProperty(hidden = true)

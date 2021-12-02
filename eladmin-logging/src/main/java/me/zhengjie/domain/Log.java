@@ -23,7 +23,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * @author Zheng Jie
@@ -72,7 +72,7 @@ public class Log  implements Serializable {
 
     /** 创建日期 */
 //    @CreationTimestamp
-    private Timestamp createTime;
+    private Date createTime;
 
     public Log(String logType, Long time) {
         this.logType = logType;

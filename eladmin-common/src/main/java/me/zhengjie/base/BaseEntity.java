@@ -26,7 +26,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
-import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * 通用字段， is_del 根据需求自行添加
@@ -50,12 +50,12 @@ public class BaseEntity implements Serializable {
     @org.springframework.data.mongodb.core.mapping.Field("create_time")
     @CreatedDate
     @ApiModelProperty(value = "创建时间", hidden = true)
-    private Timestamp createTime;
+    private Date createTime;
 
     @org.springframework.data.mongodb.core.mapping.Field("update_time")
     @LastModifiedDate
     @ApiModelProperty(value = "更新时间", hidden = true)
-    private Timestamp updateTime;
+    private Date updateTime;
 
     /* 分组校验 */
     public @interface Create {}
