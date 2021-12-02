@@ -15,11 +15,11 @@
  */
 package me.zhengjie.modules.system.repository;
 
+import me.zhengjie.base.BaseRepository;
 import me.zhengjie.modules.system.domain.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
+//import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.mongodb.repository.Query;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -28,7 +28,7 @@ import java.util.Set;
  * @author Zheng Jie
  * @date 2018-11-22
  */
-public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
+public interface UserRepository extends BaseRepository<User, Long> {
 
     /**
      * 根据用户名查询
@@ -57,8 +57,8 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
      * @param pass 密码
      * @param lastPasswordResetTime /
      */
-    @Modifying
-    @Query(value = "update sys_user set password = ?2 , pwd_reset_time = ?3 where username = ?1",nativeQuery = true)
+//    @Modifying
+    @Query(value = "update sys_user set password = ?2 , pwd_reset_time = ?3 where username = ?1")
     void updatePass(String username, String pass, Date lastPasswordResetTime);
 
     /**
@@ -66,8 +66,8 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
      * @param username 用户名
      * @param email 邮箱
      */
-    @Modifying
-    @Query(value = "update sys_user set email = ?2 where username = ?1",nativeQuery = true)
+//    @Modifying
+    @Query(value = "update sys_user set email = ?2 where username = ?1")
     void updateEmail(String username, String email);
 
     /**
@@ -76,7 +76,7 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
      * @return /
      */
     @Query(value = "SELECT u.* FROM sys_user u, sys_users_roles r WHERE" +
-            " u.user_id = r.user_id AND r.role_id = ?1", nativeQuery = true)
+            " u.user_id = r.user_id AND r.role_id = ?1")
     List<User> findByRoleId(Long roleId);
 
     /**
@@ -85,7 +85,7 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
      * @return /
      */
     @Query(value = "SELECT u.* FROM sys_user u, sys_users_roles r, sys_roles_depts d WHERE " +
-            "u.user_id = r.user_id AND r.role_id = d.role_id AND d.dept_id = ?1 group by u.user_id", nativeQuery = true)
+            "u.user_id = r.user_id AND r.role_id = d.role_id AND d.dept_id = ?1 group by u.user_id")
     List<User> findByRoleDeptId(Long deptId);
 
     /**
@@ -94,7 +94,7 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
      * @return /
      */
     @Query(value = "SELECT u.* FROM sys_user u, sys_users_roles ur, sys_roles_menus rm WHERE\n" +
-            "u.user_id = ur.user_id AND ur.role_id = rm.role_id AND rm.menu_id = ?1 group by u.user_id", nativeQuery = true)
+            "u.user_id = ur.user_id AND ur.role_id = rm.role_id AND rm.menu_id = ?1 group by u.user_id")
     List<User> findByMenuId(Long id);
 
     /**
@@ -108,7 +108,7 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
      * @param ids /
      * @return /
      */
-    @Query(value = "SELECT count(1) FROM sys_user u, sys_users_jobs j WHERE u.user_id = j.user_id AND j.job_id IN ?1", nativeQuery = true)
+    @Query(value = "SELECT count(1) FROM sys_user u, sys_users_jobs j WHERE u.user_id = j.user_id AND j.job_id IN ?1")
     int countByJobs(Set<Long> ids);
 
     /**
@@ -116,7 +116,7 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
      * @param deptIds /
      * @return /
      */
-    @Query(value = "SELECT count(1) FROM sys_user u WHERE u.dept_id IN ?1", nativeQuery = true)
+    @Query(value = "SELECT count(1) FROM sys_user u WHERE u.dept_id IN ?1")
     int countByDepts(Set<Long> deptIds);
 
     /**
@@ -125,6 +125,6 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
      * @return /
      */
     @Query(value = "SELECT count(1) FROM sys_user u, sys_users_roles r WHERE " +
-            "u.user_id = r.user_id AND r.role_id in ?1", nativeQuery = true)
+            "u.user_id = r.user_id AND r.role_id in ?1")
     int countByRoles(Set<Long> ids);
 }

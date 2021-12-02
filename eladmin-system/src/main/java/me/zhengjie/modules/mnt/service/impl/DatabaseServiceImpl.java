@@ -24,7 +24,7 @@ import me.zhengjie.modules.mnt.service.DatabaseService;
 import me.zhengjie.modules.mnt.service.dto.DatabaseDto;
 import me.zhengjie.modules.mnt.service.dto.DatabaseQueryCriteria;
 import me.zhengjie.modules.mnt.service.mapstruct.DatabaseMapper;
-import me.zhengjie.modules.mnt.util.SqlUtils;
+//import me.zhengjie.modules.mnt.util.SqlUtils;
 import me.zhengjie.utils.FileUtil;
 import me.zhengjie.utils.PageUtil;
 import me.zhengjie.utils.QueryHelp;
@@ -51,13 +51,13 @@ public class DatabaseServiceImpl implements DatabaseService {
 
     @Override
     public Object queryAll(DatabaseQueryCriteria criteria, Pageable pageable){
-        Page<Database> page = databaseRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder),pageable);
+        Page<Database> page = databaseRepository.findAll(pageable);
         return PageUtil.toPage(page.map(databaseMapper::toDto));
     }
 
     @Override
     public List<DatabaseDto> queryAll(DatabaseQueryCriteria criteria){
-        return databaseMapper.toDto(databaseRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder)));
+        return databaseMapper.toDto(databaseRepository.findAll());
     }
 
     @Override
@@ -94,7 +94,8 @@ public class DatabaseServiceImpl implements DatabaseService {
 	@Override
 	public boolean testConnection(Database resources) {
 		try {
-			return SqlUtils.testConnection(resources.getJdbcUrl(), resources.getUserName(), resources.getPwd());
+//			return SqlUtils.testConnection(resources.getJdbcUrl(), resources.getUserName(), resources.getPwd());
+			return false;
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			return false;

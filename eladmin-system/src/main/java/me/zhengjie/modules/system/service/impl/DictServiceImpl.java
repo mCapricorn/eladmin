@@ -49,13 +49,13 @@ public class DictServiceImpl implements DictService {
 
     @Override
     public Map<String, Object> queryAll(DictQueryCriteria dict, Pageable pageable){
-        Page<Dict> page = dictRepository.findAll((root, query, cb) -> QueryHelp.getPredicate(root, dict, cb), pageable);
+        Page<Dict> page = dictRepository.findAll(pageable);
         return PageUtil.toPage(page.map(dictMapper::toDto));
     }
 
     @Override
     public List<DictDto> queryAll(DictQueryCriteria dict) {
-        List<Dict> list = dictRepository.findAll((root, query, cb) -> QueryHelp.getPredicate(root, dict, cb));
+        List<Dict> list = dictRepository.findAll();
         return dictMapper.toDto(list);
     }
 

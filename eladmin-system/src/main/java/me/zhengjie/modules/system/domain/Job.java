@@ -22,7 +22,7 @@ import me.zhengjie.base.BaseEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -32,7 +32,7 @@ import java.util.Objects;
 * @author Zheng Jie
 * @date 2019-03-29
 */
-@Entity
+//@Entity
 @Getter
 @Setter
 @Document(collection="sys_job")
@@ -41,7 +41,7 @@ public class Job extends BaseEntity implements Serializable {
     @Field("job_id")
     @NotNull(groups = Update.class)
     @ApiModelProperty(value = "ID", hidden = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank

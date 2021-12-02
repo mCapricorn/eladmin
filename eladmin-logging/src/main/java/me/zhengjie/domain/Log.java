@@ -18,11 +18,10 @@ package me.zhengjie.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
+//import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -30,7 +29,7 @@ import java.sql.Timestamp;
  * @author Zheng Jie
  * @date 2018-11-24
  */
-@Entity
+//@Entity
 @Getter
 @Setter
 @Document(collection = "sys_log")
@@ -38,7 +37,7 @@ import java.sql.Timestamp;
 public class Log  implements Serializable {
 
     @Field("log_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /** 操作用户 */
@@ -72,7 +71,7 @@ public class Log  implements Serializable {
     private byte[] exceptionDetail;
 
     /** 创建日期 */
-    @CreationTimestamp
+//    @CreationTimestamp
     private Timestamp createTime;
 
     public Log(String logType, Long time) {

@@ -25,7 +25,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -33,7 +33,7 @@ import java.util.Set;
 * @author zhanghouying
 * @date 2019-08-24
 */
-@Entity
+//@Entity
 @Getter
 @Setter
 @Document(collection="mnt_deploy")
@@ -41,7 +41,7 @@ public class Deploy extends BaseEntity implements Serializable {
 
 	@Field("deploy_id")
 	@ApiModelProperty(value = "ID", hidden = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 //	@ManyToMany

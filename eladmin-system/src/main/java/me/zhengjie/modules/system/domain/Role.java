@@ -25,7 +25,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -39,13 +39,13 @@ import java.util.Set;
  */
 @Getter
 @Setter
-@Entity
+//@Entity
 @Document(collection = "sys_role")
 public class Role extends BaseEntity implements Serializable {
 
     @Field("role_id")
     @NotNull(groups = {Update.class})
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(value = "ID", hidden = true)
     private Long id;
 

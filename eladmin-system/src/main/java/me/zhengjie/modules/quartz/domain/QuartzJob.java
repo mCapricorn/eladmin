@@ -19,10 +19,11 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -33,7 +34,7 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-@Entity
+//@Entity
 @Document(collection = "sys_quartz_job")
 public class QuartzJob extends BaseEntity implements Serializable {
 
@@ -41,7 +42,7 @@ public class QuartzJob extends BaseEntity implements Serializable {
 
     @Field("job_id")
     @NotNull(groups = {Update.class})
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Transient

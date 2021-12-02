@@ -15,11 +15,10 @@
  */
 package me.zhengjie.modules.system.repository;
 
+import me.zhengjie.base.BaseRepository;
 import me.zhengjie.modules.system.domain.Role;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
+//import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
 import java.util.Set;
@@ -28,7 +27,7 @@ import java.util.Set;
  * @author Zheng Jie
  * @date 2018-12-03
  */
-public interface RoleRepository extends JpaRepository<Role, Long>, JpaSpecificationExecutor<Role> {
+public interface RoleRepository extends BaseRepository<Role, Long> {
 
     /**
      * 根据名称查询
@@ -49,15 +48,15 @@ public interface RoleRepository extends JpaRepository<Role, Long>, JpaSpecificat
      * @return /
      */
     @Query(value = "SELECT r.* FROM sys_role r, sys_users_roles u WHERE " +
-            "r.role_id = u.role_id AND u.user_id = ?1",nativeQuery = true)
+            "r.role_id = u.role_id AND u.user_id = ?1")
     Set<Role> findByUserId(Long id);
 
     /**
      * 解绑角色菜单
      * @param id 菜单ID
      */
-    @Modifying
-    @Query(value = "delete from sys_roles_menus where menu_id = ?1",nativeQuery = true)
+//    @Modifying
+    @Query(value = "delete from sys_roles_menus where menu_id = ?1")
     void untiedMenu(Long id);
 
     /**
@@ -66,7 +65,7 @@ public interface RoleRepository extends JpaRepository<Role, Long>, JpaSpecificat
      * @return /
      */
     @Query(value = "select count(1) from sys_role r, sys_roles_depts d where " +
-            "r.role_id = d.role_id and d.dept_id in ?1",nativeQuery = true)
+            "r.role_id = d.role_id and d.dept_id in ?1")
     int countByDepts(Set<Long> deptIds);
 
     /**
@@ -75,6 +74,6 @@ public interface RoleRepository extends JpaRepository<Role, Long>, JpaSpecificat
      * @return /
      */
     @Query(value = "SELECT r.* FROM sys_role r, sys_roles_menus m WHERE " +
-            "r.role_id = m.role_id AND m.menu_id in ?1",nativeQuery = true)
+            "r.role_id = m.role_id AND m.menu_id in ?1")
     List<Role> findInMenuId(List<Long> menuIds);
 }

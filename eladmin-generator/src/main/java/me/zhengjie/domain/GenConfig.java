@@ -22,7 +22,7 @@ import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
@@ -33,7 +33,7 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-@Entity
+//@Entity
 @NoArgsConstructor
 @Document(collection = "code_gen_config")
 public class GenConfig implements Serializable {
@@ -44,7 +44,7 @@ public class GenConfig implements Serializable {
 
     @Field("config_id")
     @ApiModelProperty(value = "ID", hidden = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank

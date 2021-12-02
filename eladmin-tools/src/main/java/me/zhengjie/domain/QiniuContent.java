@@ -17,11 +17,11 @@ package me.zhengjie.domain;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.hibernate.annotations.UpdateTimestamp;
+//import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -31,13 +31,13 @@ import java.sql.Timestamp;
  * @date 2018-12-31
  */
 @Data
-@Entity
+//@Entity
 @Document(collection = "tool_qiniu_content")
 public class QiniuContent implements Serializable {
 
     @Field("content_id")
     @ApiModelProperty(value = "ID", hidden = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Field("name")
@@ -59,7 +59,7 @@ public class QiniuContent implements Serializable {
     @ApiModelProperty(value = "空间类型：公开/私有")
     private String type = "公开";
 
-    @UpdateTimestamp
+//    @UpdateTimestamp
     @ApiModelProperty(value = "创建或更新时间")
     @Field("update_time")
     private Timestamp updateTime;

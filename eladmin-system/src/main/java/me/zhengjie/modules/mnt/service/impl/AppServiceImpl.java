@@ -48,13 +48,13 @@ public class AppServiceImpl implements AppService {
 
     @Override
     public Object queryAll(AppQueryCriteria criteria, Pageable pageable){
-        Page<App> page = appRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder),pageable);
+        Page<App> page = appRepository.findAll(pageable);
         return PageUtil.toPage(page.map(appMapper::toDto));
     }
 
     @Override
     public List<AppDto> queryAll(AppQueryCriteria criteria){
-        return appMapper.toDto(appRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder)));
+        return appMapper.toDto(appRepository.findAll());
     }
 
     @Override

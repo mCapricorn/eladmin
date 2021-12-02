@@ -24,15 +24,15 @@ import me.zhengjie.base.BaseEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+//import javax.persistence.Entity;
+//import javax.persistence.Id;
 import java.io.Serializable;
 
 /**
  * @author zhanghouying
  * @date 2019-08-24
  */
-@Entity
+//@Entity
 @Getter
 @Setter
 @Document(collection="mnt_deploy_server")

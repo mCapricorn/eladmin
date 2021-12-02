@@ -24,7 +24,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
@@ -34,7 +34,7 @@ import java.util.Set;
  * @author Zheng Jie
  * @date 2018-12-17
  */
-@Entity
+//@Entity
 @Getter
 @Setter
 @Document(collection = "sys_menu")
@@ -43,7 +43,7 @@ public class Menu extends BaseEntity implements Serializable {
     @Field("menu_id")
     @NotNull(groups = {Update.class})
     @ApiModelProperty(value = "ID", hidden = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @JSONField(serialize = false)
@@ -77,11 +77,11 @@ public class Menu extends BaseEntity implements Serializable {
     @ApiModelProperty(value = "菜单图标")
     private String icon;
 
-    @Column(columnDefinition = "bit(1) default 0")
+//    @Column(columnDefinition = "bit(1) default 0")
     @ApiModelProperty(value = "缓存")
     private Boolean cache;
 
-    @Column(columnDefinition = "bit(1) default 0")
+//    @Column(columnDefinition = "bit(1) default 0")
     @ApiModelProperty(value = "是否隐藏")
     private Boolean hidden;
 

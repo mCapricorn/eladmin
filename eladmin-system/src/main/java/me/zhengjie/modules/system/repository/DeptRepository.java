@@ -15,11 +15,11 @@
  */
 package me.zhengjie.modules.system.repository;
 
+import me.zhengjie.base.BaseRepository;
 import me.zhengjie.modules.system.domain.Dept;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
+//import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.mongodb.repository.Query;
+
 import java.util.List;
 import java.util.Set;
 
@@ -27,7 +27,7 @@ import java.util.Set;
 * @author Zheng Jie
 * @date 2019-03-25
 */
-public interface DeptRepository extends JpaRepository<Dept, Long>, JpaSpecificationExecutor<Dept> {
+public interface DeptRepository extends BaseRepository<Dept, Long> {
 
     /**
      * 根据 PID 查询
@@ -48,7 +48,7 @@ public interface DeptRepository extends JpaRepository<Dept, Long>, JpaSpecificat
      * @return /
      */
     @Query(value = "select d.* from sys_dept d, sys_roles_depts r where " +
-            "d.dept_id = r.dept_id and r.role_id = ?1", nativeQuery = true)
+            "d.dept_id = r.dept_id and r.role_id = ?1")
     Set<Dept> findByRoleId(Long roleId);
 
     /**
@@ -63,7 +63,7 @@ public interface DeptRepository extends JpaRepository<Dept, Long>, JpaSpecificat
      * @param count /
      * @param id /
      */
-    @Modifying
-    @Query(value = " update sys_dept set sub_count = ?1 where dept_id = ?2 ",nativeQuery = true)
+//    @Modifying
+    @Query(value = " update sys_dept set sub_count = ?1 where dept_id = ?2 ")
     void updateSubCntById(Integer count, Long id);
 }

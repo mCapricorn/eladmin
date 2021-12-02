@@ -51,22 +51,22 @@ public class QuartzJobServiceImpl implements QuartzJobService {
 
     @Override
     public Object queryAll(JobQueryCriteria criteria, Pageable pageable){
-        return PageUtil.toPage(quartzJobRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder),pageable));
+        return PageUtil.toPage(quartzJobRepository.findAll(pageable));
     }
 
     @Override
     public Object queryAllLog(JobQueryCriteria criteria, Pageable pageable){
-        return PageUtil.toPage(quartzLogRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder),pageable));
+        return PageUtil.toPage(quartzLogRepository.findAll(pageable));
     }
 
     @Override
     public List<QuartzJob> queryAll(JobQueryCriteria criteria) {
-        return quartzJobRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder));
+        return quartzJobRepository.findAll();
     }
 
     @Override
     public List<QuartzLog> queryAllLog(JobQueryCriteria criteria) {
-        return quartzLogRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder));
+        return quartzLogRepository.findAll();
     }
 
     @Override

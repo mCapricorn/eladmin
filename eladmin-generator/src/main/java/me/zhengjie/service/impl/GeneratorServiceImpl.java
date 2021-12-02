@@ -29,14 +29,15 @@ import me.zhengjie.utils.FileUtil;
 import me.zhengjie.utils.GenUtil;
 import me.zhengjie.utils.PageUtil;
 import me.zhengjie.utils.StringUtils;
+import org.apache.xmlbeans.impl.piccolo.xml.EntityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+//import javax.persistence.EntityManager;
+//import javax.persistence.PersistenceContext;
+//import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -54,7 +55,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class GeneratorServiceImpl implements GeneratorService {
     private static final Logger log = LoggerFactory.getLogger(GeneratorServiceImpl.class);
-    @PersistenceContext
+//    @PersistenceContext
     private EntityManager em;
 
     private final ColumnInfoRepository columnInfoRepository;
@@ -65,8 +66,9 @@ public class GeneratorServiceImpl implements GeneratorService {
         String sql = "select table_name ,create_time , engine, table_collation, table_comment from information_schema.tables " +
                 "where table_schema = (select database()) " +
                 "order by create_time desc";
-        Query query = em.createNativeQuery(sql);
-        return query.getResultList();
+//        Query query = em.createNativeQuery(sql);
+//        return query.getResultList();
+        return null;
     }
 
     @Override
@@ -75,22 +77,23 @@ public class GeneratorServiceImpl implements GeneratorService {
         String sql = "select table_name ,create_time , engine, table_collation, table_comment from information_schema.tables " +
                 "where table_schema = (select database()) " +
                 "and table_name like :table order by create_time desc";
-        Query query = em.createNativeQuery(sql);
-        query.setFirstResult(startEnd[0]);
-        query.setMaxResults(startEnd[1] - startEnd[0]);
-        query.setParameter("table", StringUtils.isNotBlank(name) ? ("%" + name + "%") : "%%");
-        List result = query.getResultList();
-        List<TableInfo> tableInfos = new ArrayList<>();
-        for (Object obj : result) {
-            Object[] arr = (Object[]) obj;
-            tableInfos.add(new TableInfo(arr[0], arr[1], arr[2], arr[3], ObjectUtil.isNotEmpty(arr[4]) ? arr[4] : "-"));
-        }
-        String countSql = "select count(1) from information_schema.tables " +
-                "where table_schema = (select database()) and table_name like :table";
-        Query queryCount = em.createNativeQuery(countSql);
-        queryCount.setParameter("table", StringUtils.isNotBlank(name) ? ("%" + name + "%") : "%%");
-        Object totalElements = queryCount.getSingleResult();
-        return PageUtil.toPage(tableInfos, totalElements);
+//        Query query = em.createNativeQuery(sql);
+//        query.setFirstResult(startEnd[0]);
+//        query.setMaxResults(startEnd[1] - startEnd[0]);
+//        query.setParameter("table", StringUtils.isNotBlank(name) ? ("%" + name + "%") : "%%");
+//        List result = query.getResultList();
+//        List<TableInfo> tableInfos = new ArrayList<>();
+//        for (Object obj : result) {
+//            Object[] arr = (Object[]) obj;
+//            tableInfos.add(new TableInfo(arr[0], arr[1], arr[2], arr[3], ObjectUtil.isNotEmpty(arr[4]) ? arr[4] : "-"));
+//        }
+//        String countSql = "select count(1) from information_schema.tables " +
+//                "where table_schema = (select database()) and table_name like :table";
+//        Query queryCount = em.createNativeQuery(countSql);
+//        queryCount.setParameter("table", StringUtils.isNotBlank(name) ? ("%" + name + "%") : "%%");
+//        Object totalElements = queryCount.getSingleResult();
+//        return PageUtil.toPage(tableInfos, totalElements);
+        return null;
     }
 
     @Override
@@ -109,23 +112,23 @@ public class GeneratorServiceImpl implements GeneratorService {
         // 使用预编译防止sql注入
         String sql = "select column_name, is_nullable, data_type, column_comment, column_key, extra from information_schema.columns " +
                 "where table_name = ? and table_schema = (select database()) order by ordinal_position";
-        Query query = em.createNativeQuery(sql);
-        query.setParameter(1, tableName);
-        List result = query.getResultList();
+//        Query query = em.createNativeQuery(sql);
+//        query.setParameter(1, tableName);
+//        List result = query.getResultList();
         List<ColumnInfo> columnInfos = new ArrayList<>();
-        for (Object obj : result) {
-            Object[] arr = (Object[]) obj;
-            columnInfos.add(
-                    new ColumnInfo(
-                            tableName,
-                            arr[0].toString(),
-                            "NO".equals(arr[1]),
-                            arr[2].toString(),
-                            ObjectUtil.isNotNull(arr[3]) ? arr[3].toString() : null,
-                            ObjectUtil.isNotNull(arr[4]) ? arr[4].toString() : null,
-                            ObjectUtil.isNotNull(arr[5]) ? arr[5].toString() : null)
-            );
-        }
+//        for (Object obj : result) {
+//            Object[] arr = (Object[]) obj;
+//            columnInfos.add(
+//                    new ColumnInfo(
+//                            tableName,
+//                            arr[0].toString(),
+//                            "NO".equals(arr[1]),
+//                            arr[2].toString(),
+//                            ObjectUtil.isNotNull(arr[3]) ? arr[3].toString() : null,
+//                            ObjectUtil.isNotNull(arr[4]) ? arr[4].toString() : null,
+//                            ObjectUtil.isNotNull(arr[5]) ? arr[5].toString() : null)
+//            );
+//        }
         return columnInfos;
     }
 

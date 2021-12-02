@@ -20,7 +20,7 @@ import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
@@ -30,7 +30,7 @@ import java.io.Serializable;
  * @date 2018-12-31
  */
 @Data
-@Entity
+//@Entity
 @Document(collection = "tool_alipay_config")
 public class AlipayConfig implements Serializable {
 

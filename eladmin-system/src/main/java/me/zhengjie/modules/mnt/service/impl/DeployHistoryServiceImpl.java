@@ -48,13 +48,13 @@ public class DeployHistoryServiceImpl implements DeployHistoryService {
 
     @Override
     public Object queryAll(DeployHistoryQueryCriteria criteria, Pageable pageable){
-        Page<DeployHistory> page = deployhistoryRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder),pageable);
+        Page<DeployHistory> page = deployhistoryRepository.findAll(pageable);
         return PageUtil.toPage(page.map(deployhistoryMapper::toDto));
     }
 
     @Override
     public List<DeployHistoryDto> queryAll(DeployHistoryQueryCriteria criteria){
-        return deployhistoryMapper.toDto(deployhistoryRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder)));
+        return deployhistoryMapper.toDto(deployhistoryRepository.findAll());
     }
 
     @Override

@@ -21,25 +21,27 @@ import cn.hutool.core.bean.copier.CopyOptions;
 import lombok.Getter;
 import lombok.Setter;
 import me.zhengjie.base.BaseEntity;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import java.io.Serializable;
 
 /**
 * @author zhanghouying
 * @date 2019-08-24
 */
-@Entity
+//@Entity
 @Getter
 @Setter
 @Document(collection="mnt_app")
 public class App extends BaseEntity implements Serializable {
 
+	@Id
 	@Field("app_id")
 	@ApiModelProperty(value = "ID", hidden = true)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 	@ApiModelProperty(value = "名称")

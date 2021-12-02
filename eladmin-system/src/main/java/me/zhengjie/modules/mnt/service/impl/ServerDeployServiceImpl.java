@@ -48,13 +48,13 @@ public class ServerDeployServiceImpl implements ServerDeployService {
 
     @Override
     public Object queryAll(ServerDeployQueryCriteria criteria, Pageable pageable){
-        Page<ServerDeploy> page = serverDeployRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder),pageable);
+        Page<ServerDeploy> page = serverDeployRepository.findAll(pageable);
         return PageUtil.toPage(page.map(serverDeployMapper::toDto));
     }
 
     @Override
     public List<ServerDeployDto> queryAll(ServerDeployQueryCriteria criteria){
-        return serverDeployMapper.toDto(serverDeployRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder)));
+        return serverDeployMapper.toDto(serverDeployRepository.findAll());
     }
 
     @Override

@@ -20,7 +20,7 @@ import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
@@ -29,7 +29,7 @@ import java.io.Serializable;
  * @author Zheng Jie
  * @date 2018-12-26
  */
-@Entity
+//@Entity
 @Data
 @Document(collection = "tool_email_config")
 public class EmailConfig implements Serializable {

@@ -23,7 +23,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -31,7 +31,7 @@ import java.io.Serializable;
 * @author Zheng Jie
 * @date 2019-04-10
 */
-@Entity
+//@Entity
 @Getter
 @Setter
 @Document(collection="sys_dict_detail")
@@ -40,7 +40,7 @@ public class DictDetail extends BaseEntity implements Serializable {
     @Field("detail_id")
     @NotNull(groups = Update.class)
     @ApiModelProperty(value = "ID", hidden = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 //    @JoinColumn(name = "dict_id")

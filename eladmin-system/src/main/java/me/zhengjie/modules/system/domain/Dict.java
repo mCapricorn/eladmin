@@ -22,7 +22,7 @@ import me.zhengjie.base.BaseEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -32,7 +32,7 @@ import java.util.List;
 * @author Zheng Jie
 * @date 2019-04-10
 */
-@Entity
+//@Entity
 @Getter
 @Setter
 @Document(collection="sys_dict")
@@ -41,10 +41,10 @@ public class Dict extends BaseEntity implements Serializable {
     @Field("dict_id")
     @NotNull(groups = Update.class)
     @ApiModelProperty(value = "ID", hidden = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "dict",cascade={CascadeType.PERSIST,CascadeType.REMOVE})
+//    @OneToMany(mappedBy = "dict",cascade={CascadeType.PERSIST,CascadeType.REMOVE})
     private List<DictDetail> dictDetails;
 
     @NotBlank

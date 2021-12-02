@@ -23,7 +23,7 @@ import me.zhengjie.base.BaseEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -32,14 +32,14 @@ import java.io.Serializable;
 */
 @Getter
 @Setter
-@Entity
+//@Entity
 @Document(collection="tool_local_storage")
 @NoArgsConstructor
 public class LocalStorage extends BaseEntity implements Serializable {
 
     @Field("storage_id")
     @ApiModelProperty(value = "ID", hidden = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ApiModelProperty(value = "真实文件名")

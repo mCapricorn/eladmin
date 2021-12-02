@@ -85,12 +85,12 @@ public class QiNiuServiceImpl implements QiNiuService {
 
     @Override
     public Object queryAll(QiniuQueryCriteria criteria, Pageable pageable){
-        return PageUtil.toPage(qiniuContentRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder),pageable));
+        return PageUtil.toPage(qiniuContentRepository.findAll(pageable));
     }
 
     @Override
     public List<QiniuContent> queryAll(QiniuQueryCriteria criteria) {
-        return qiniuContentRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder));
+        return qiniuContentRepository.findAll();
     }
 
     @Override

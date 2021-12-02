@@ -23,7 +23,7 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -36,7 +36,7 @@ import java.util.Set;
  * @author Zheng Jie
  * @date 2018-11-22
  */
-@Entity
+//@Entity
 @Getter
 @Setter
 @Document(collection="sys_user")
@@ -44,7 +44,7 @@ public class User extends BaseEntity implements Serializable {
 
     @Field("user_id")
     @NotNull(groups = Update.class)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ApiModelProperty(value = "ID", hidden = true)
     private Long id;
 
@@ -71,7 +71,7 @@ public class User extends BaseEntity implements Serializable {
     private Dept dept;
 
     @NotBlank
-    @Column(unique = true)
+//    @Column(unique = true)
     @ApiModelProperty(value = "用户名称")
     private String username;
 

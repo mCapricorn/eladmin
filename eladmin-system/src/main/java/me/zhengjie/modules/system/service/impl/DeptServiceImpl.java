@@ -79,7 +79,7 @@ public class DeptServiceImpl implements DeptService {
                 }
             }
         }
-        List<DeptDto> list = deptMapper.toDto(deptRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder),sort));
+        List<DeptDto> list = deptMapper.toDto(deptRepository.findAll(sort));
         // 如果为空，就代表为自定义权限或者本级权限，就需要去重，不理解可以注释掉，看查询结果
         if(StringUtils.isBlank(dataScopeType)){
             return deduplication(list);

@@ -15,9 +15,8 @@
  */
 package me.zhengjie.modules.system.repository;
 
+import me.zhengjie.base.BaseRepository;
 import me.zhengjie.modules.system.domain.Dict;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.List;
 import java.util.Set;
@@ -26,7 +25,7 @@ import java.util.Set;
 * @author Zheng Jie
 * @date 2019-04-10
 */
-public interface DictRepository extends JpaRepository<Dict, Long>, JpaSpecificationExecutor<Dict> {
+public interface DictRepository extends BaseRepository<Dict, Long> {
 
     /**
      * 删除
